@@ -239,8 +239,8 @@ function updateUI() {
     <div>Player ($${playerChips}): ${playerHand.map(c => cardHTML(c)).join("")}</div>
     <div>AI ($${aiChips}): ${roundStage==="showdown" ? aiHand.map(c=>cardHTML(c)).join("") : "🂠 🂠"}</div>
   `;
-  document.getElementById("community-cards").innerHTML =
-    communityCards.map(c => cardHTML(c)).join("");
+  document.getElementById("community-cards").innerHTML = "";
+  renderCardsWithDelay();
   document.getElementById("log").innerHTML += `<br>Pot: $${pot}, Current Bet: $${currentBet}`;
 }
 
@@ -250,6 +250,18 @@ function cardHTML(card) {
 
 function log(msg) {
   document.getElementById("log").innerHTML += "<br>" + msg;
+}
+
+// ----------------------
+// Animated Card Deal
+// ----------------------
+function renderCardsWithDelay() {
+  const communityDiv = document.getElementById("community-cards");
+  communityCards.forEach((card, i) => {
+    setTimeout(() => {
+      communityDiv.innerHTML += cardHTML(card);
+    }, i * 200); // 200ms between cards
+  });
 }
 
 // ----------------------
