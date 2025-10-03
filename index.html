@@ -2,15 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Texas Hold'em - Single Player</title>
+  <title>Texas Hold'em Multiplayer</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update, get, child, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCiyAKXEi0fxGYbytuf0fiAaeyZJUrHpAQ",
+      authDomain: "thmpkr.firebaseapp.com",
+      databaseURL: "https://thmpkr-default-rtdb.firebaseio.com",
+      projectId: "thmpkr",
+      storageBucket: "thmpkr.firebasestorage.app",
+      messagingSenderId: "622919030023",
+      appId: "1:622919030023:web:4d0c35e1fdd84f2bcb21a2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.db = getDatabase(app);
+  </script>
 </head>
 <body>
   <div id="table">
     <div id="log"></div>
     <div id="community-cards"></div>
     <div id="players">
-      <div id="player">Player</div>
+      <div id="player1">Player 1</div>
+      <div id="player2">Player 2</div>
     </div>
     <div id="actions">
       <button onclick="playerAction('fold')">Fold</button>
@@ -18,6 +38,6 @@
       <button onclick="playerAction('raise')">Raise</button>
     </div>
   </div>
-  <script src="game.js"></script>
+  <script type="module" src="game.js"></script>
 </body>
 </html>
