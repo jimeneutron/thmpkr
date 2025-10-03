@@ -5,11 +5,12 @@
   <title>Texas Hold'em Multiplayer</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase -->
+  <!-- Firebase SDK -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue, update, get, child, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update, push, get, child, runTransaction } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-database.js";
 
+    // Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyCiyAKXEi0fxGYbytuf0fiAaeyZJUrHpAQ",
       authDomain: "thmpkr.firebaseapp.com",
@@ -20,8 +21,13 @@
       appId: "1:622919030023:web:4d0c35e1fdd84f2bcb21a2"
     };
 
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    window.db = getDatabase(app);
+    const db = getDatabase(app);
+
+    // Expose Firebase DB to global scope for game.js
+    window.db = db;
+    window.firebaseRefs = { ref, set, onValue, update, push, get, child, runTransaction };
   </script>
 </head>
 <body>
@@ -29,8 +35,8 @@
     <div id="log"></div>
     <div id="community-cards"></div>
     <div id="players">
-      <div id="player1">Player 1</div>
-      <div id="player2">Player 2</div>
+      <div id="player">You</div>
+      <div id="opponent">Opponent</div>
     </div>
     <div id="actions">
       <button onclick="playerAction('fold')">Fold</button>
