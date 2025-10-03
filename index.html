@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Texas Hold'em - Single Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="table">
+    <h1>Texas Hold'em Poker</h1>
+    <div id="community-cards"></div>
+    <div id="players"></div>
+    <div id="actions">
+      <button onclick="playerAction('fold')">Fold</button>
+      <button onclick="playerAction('call')">Call</button>
+      <button onclick="playerAction('raise')">Raise</button>
+    </div>
+    <div id="log"></div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
